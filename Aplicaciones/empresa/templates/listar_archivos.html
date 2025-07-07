@@ -1,0 +1,48 @@
+{% extends "./plantilla.html" %}
+{% block contenido %}
+
+<h2>Archivos del Guía: {{ guia.nombres }} {{ guia.apellidos }}</h2>
+<a href="{% url 'nuevo_archivo' guia.id %}" class="btn btn-primary mb-3">Nuevo Archivo</a>
+
+<div class="table-responsive">
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Foto</th>
+            <th>Documento PDF</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for archivo in archivos %}
+        <tr>
+            <td>{{ archivo.id }}</td>
+            <td>{{ archivo.descripcion }}</td>
+            <td>
+                {% if archivo.foto %}
+                    <img src="{{ archivo.foto.url }}" alt="Foto" style="max-height:100px;">
+                {% else %}
+                    Sin foto
+                {% endif %}
+            </td>
+            <td>
+                {% if archivo.documento %}
+                    <a href="{{ archivo.documento.url }}" target="_blank">Ver PDF</a>
+                {% else %}
+                    Sin documento
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'eliminar_archivo' archivo.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<a href="{% url 'listar_guias' %}" class="btn btn-secondary mt-3">Volver a Guías</a>
+
+{% endblock %}

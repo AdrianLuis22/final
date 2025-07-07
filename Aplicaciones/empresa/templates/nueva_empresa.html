@@ -1,0 +1,10 @@
+{% extends 'plantilla.html' %}
+{% block contenido %}
+    <h2>Nueva Empresa</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ formulario.as_p }}
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="{% url 'listar_empresas' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "./plantilla.html" %}
+{% block contenido %}
+
+<h2>Guías Turísticos</h2>
+<a href="{% url 'nuevo_guia' %}" class="btn btn-primary mb-3">Nuevo Guía</a>
+
+<div class="table-responsive">
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Cédula</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Empresa</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for guia in guias %}
+        <tr>
+            <td>{{ guia.id }}</td>
+            <td>{{ guia.nombres }}</td>
+            <td>{{ guia.apellidos }}</td>
+            <td>{{ guia.cedula }}</td>
+            <td>{{ guia.telefono }}</td>
+            <td>{{ guia.email }}</td>
+            <td>{{ guia.empresa.nombre }}</td>
+            <td>
+                <a href="{% url 'editar_guia' guia.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'eliminar_guia' guia.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                <a href="{% url 'listar_archivos' guia.id %}" class="btn btn-info btn-sm">Archivos</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

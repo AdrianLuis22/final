@@ -1,0 +1,17 @@
+
+
+
+detalle
+evento
+excedente
+
+
+
+medidor
+
+recaudacio
+
+
+tarifa
+tipo_EVENTO
+usuarios
